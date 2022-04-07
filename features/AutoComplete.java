@@ -108,7 +108,30 @@ public class AutoComplete {
 		return result;
 	}
 
-	
-	
+	public ArrayList<String> autoComplete(String str) {
+		ArrayList<String> arr = new ArrayList<String>();
 
+		if (str.length() == 0 || str == null) {
+			return arr;
+		}
+
+		str = str.toLowerCase();
+		
+
+		TrieNode node = trie.search(str);
+
+		if (node == null) {
+			for (String word : wordFrequencyDict.keySet()) {
+				if(!word.isEmpty()){
+					if(word.startsWith(str)){
+						arr.add(word);
+					}
+				}
+			}
+		}
+
+		return arr;
+
+	}
+	
 }
